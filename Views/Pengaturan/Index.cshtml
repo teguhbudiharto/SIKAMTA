@@ -1,0 +1,135 @@
+@model SIKAMTA.Models.Pengaturan
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="card shadow">
+
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">
+            Pengaturan Mushola
+        </h4>
+    </div>
+
+    <div class="card-body">
+
+        @if (TempData["Sukses"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["Sukses"]
+            </div>
+        }
+
+        <form method="post"
+              enctype="multipart/form-data">
+
+            <div class="row">
+
+                <div class="col-md-8">
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Nama Mushola
+                        </label>
+
+                        <input asp-for="NamaMushola"
+                               class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Alamat
+                        </label>
+
+                        <textarea asp-for="Alamat"
+                                  rows="3"
+                                  class="form-control">
+                        </textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Ketua DKM
+                        </label>
+
+                        <input asp-for="KetuaDKM"
+                               class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Bendahara
+                        </label>
+
+                        <input asp-for="Bendahara"
+                               class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Telepon
+                        </label>
+
+                        <input asp-for="Telepon"
+                               class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Email
+                        </label>
+
+                        <input asp-for="Email"
+                               class="form-control">
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Logo Mushola
+                        </label>
+
+                        <input asp-for="FileLogo"
+                               type="file"
+                               class="form-control">
+
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.Logo))
+                    {
+                        <div class="text-center">
+
+                            <img src="/uploads/@Model.Logo"
+                                 class="img-thumbnail"
+                                 style="max-height:220px;" />
+
+                            <p class="mt-2 text-muted">
+                                Logo Saat Ini
+                            </p>
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+            <hr />
+
+            <button type="submit"
+                    class="btn btn-success">
+
+                Simpan Pengaturan
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

@@ -1,0 +1,108 @@
+@model SIKAMTA.ViewModels.KasPublikViewModel
+
+@{
+    ViewData["Title"] = "Transparansi Kas";
+}
+
+<div class="container mt-4">
+
+    <div class="text-center mb-4">
+        <h2>MUSHOLA AT-TAUBAH</h2>
+        <h5>Transparansi Keuangan</h5>
+        <p>Perum Bukit Panorama Indah Ciseureuh Purwakarta</p>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-body text-center">
+
+            <h4>Saldo Kas Saat Ini</h4>
+
+            <h2 class="text-success">
+                Rp @Model.Saldo.ToString("N0")
+            </h2>
+
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <h5>Total Pemasukan</h5>
+
+                    <h4 class="text-primary">
+                        Rp @Model.TotalMasuk.ToString("N0")
+                    </h4>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <h5>Total Pengeluaran</h5>
+
+                    <h4 class="text-danger">
+                        Rp @Model.TotalKeluar.ToString("N0")
+                    </h4>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr />
+
+    <h4>10 Transaksi Terakhir</h4>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tanggal</th>
+                <th>Kategori</th>
+                <th>Keterangan</th>
+                <th>Jenis</th>
+                <th>Nominal</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        @foreach(var item in Model.TransaksiTerakhir)
+        {
+            <tr>
+                <td>
+                    @item.Tanggal.ToString("dd/MM/yyyy")
+                </td>
+
+                <td>
+                    @item.Kategori?.NamaKategori
+                </td>
+
+                <td>
+                    @item.Keterangan
+                </td>
+
+                <td>
+                    @item.Jenis
+                </td>
+
+                <td>
+                    Rp @item.Nominal.ToString("N0")
+                </td>
+            </tr>
+        }
+
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,53 @@
+@model SIKAMTA.Models.Kategori
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Hapus Kategori</h2>
+
+<hr />
+
+<div class="alert alert-danger">
+
+    Apakah Anda yakin ingin menghapus kategori berikut?
+
+</div>
+
+<table class="table">
+
+    <tr>
+        <th>ID</th>
+        <td>@Model.Id</td>
+    </tr>
+
+    <tr>
+        <th>Nama Kategori</th>
+        <td>@Model.NamaKategori</td>
+    </tr>
+
+    <tr>
+        <th>Jenis</th>
+        <td>@Model.Jenis</td>
+    </tr>
+
+</table>
+
+<form method="post"
+      action="/Kategori/DeleteConfirm">
+
+    <input type="hidden"
+           name="id"
+           value="@Model.Id" />
+
+    <button type="submit"
+            class="btn btn-danger">
+        Ya, Hapus
+    </button>
+
+    <a href="/Kategori"
+       class="btn btn-secondary">
+        Batal
+    </a>
+
+</form>

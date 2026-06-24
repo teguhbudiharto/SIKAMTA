@@ -1,0 +1,70 @@
+@model SIKAMTA.Models.TransaksiKas
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Edit Transaksi</h2>
+
+<hr />
+
+<form method="post">
+
+    <input asp-for="Id" type="hidden" />
+
+    <div class="mb-3">
+        <label>Tanggal</label>
+        <input asp-for="Tanggal"
+               type="date"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Kategori</label>
+
+        <select asp-for="KategoriId"
+                class="form-control">
+
+            @foreach(var item in ViewBag.Kategori)
+            {
+                <option value="@item.Id">
+                    @item.NamaKategori
+                </option>
+            }
+
+        </select>
+
+    </div>
+
+    <div class="mb-3">
+        <label>Jenis</label>
+
+        <select asp-for="Jenis"
+                class="form-control">
+
+            <option value="Masuk">Masuk</option>
+            <option value="Keluar">Keluar</option>
+
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Keterangan</label>
+
+        <textarea asp-for="Keterangan"
+                  class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label>Nominal</label>
+
+        <input asp-for="Nominal"
+               class="form-control" />
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary">
+        Update
+    </button>
+
+</form>

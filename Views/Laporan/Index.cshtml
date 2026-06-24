@@ -1,0 +1,171 @@
+@model SIKAMTA.ViewModels.LaporanViewModel
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Laporan Kas</h2>
+
+<hr />
+
+<form method="get">
+
+<div class="row">
+
+    <div class="col-md-3">
+
+        <label>Bulan</label>
+
+        <select name="bulan"
+                class="form-control">
+
+            @for(int i=1;i<=12;i++)
+            {
+                if(i == Model.Bulan)
+                {
+                    <option value="@i" selected>
+                        @i
+                    </option>
+                }
+                else
+                {
+                    <option value="@i">
+                        @i
+                    </option>
+                }
+            }
+
+        </select>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <label>Tahun</label>
+
+        <input type="number"
+               name="tahun"
+               value="@Model.Tahun"
+               class="form-control" />
+
+    </div>
+
+    <div class="col-md-3 mt-4">
+
+        <button class="btn btn-primary">
+    Tampilkan
+</button>
+
+<a href="/Laporan/Pdf?bulan=@Model.Bulan&tahun=@Model.Tahun"
+   class="btn btn-danger">
+    Cetak PDF
+</a>
+
+    </div>
+
+</div>
+
+</form>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <div class="card text-bg-success">
+            <div class="card-body">
+
+                <h5>Total Pemasukan</h5>
+
+                <h3>
+                    Rp @Model.TotalMasuk.ToString("N0")
+                </h3>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card text-bg-danger">
+            <div class="card-body">
+
+                <h5>Total Pengeluaran</h5>
+
+                <h3>
+                    Rp @Model.TotalKeluar.ToString("N0")
+                </h3>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card text-bg-primary">
+            <div class="card-body">
+
+                <h5>Saldo</h5>
+
+                <h3>
+                    Rp @Model.Saldo.ToString("N0")
+                </h3>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<hr />
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+            <th>Tanggal</th>
+            <th>Kategori</th>
+            <th>Jenis</th>
+            <th>Keterangan</th>
+            <th>Nominal</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach(var item in Model.Data)
+        {
+            <tr>
+
+                <td>
+                    @item.Tanggal.ToString("dd/MM/yyyy")
+                </td>
+
+                <td>
+                    @item.Kategori?.NamaKategori
+                </td>
+
+                <td>
+                    @item.Jenis
+                </td>
+
+                <td>
+                    @item.Keterangan
+                </td>
+
+                <td>
+                    Rp @item.Nominal.ToString("N0")
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

@@ -1,0 +1,77 @@
+@model SIKAMTA.Models.TransaksiKas
+
+@{
+    ViewData["Title"] = "Konfirmasi Hapus Transaksi";
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            
+            <div class="card border-danger shadow-sm mt-3">
+                
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-exclamation-triangle me-2"></i> Konfirmasi Hapus Data
+                    </h5>
+                </div>
+                
+                <div class="card-body p-4">
+                    <p class="text-danger fw-bold fs-5 mb-1">Apakah Anda yakin ingin menghapus transaksi ini?</p>
+                    <p class="text-muted mb-4">Data yang dihapus tidak dapat dikembalikan dan akan memengaruhi total saldo kas.</p>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th class="bg-light" style="width: 35%;">Tanggal</th>
+                                    <td>@Model.Tanggal.ToString("dd/MM/yyyy")</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Kategori</th>
+                                    <td>@(Model.Kategori?.NamaKategori ?? "-")</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Jenis</th>
+                                    <td>
+                                        @if (Model.Jenis == "Masuk")
+                                        {
+                                            <span class="badge bg-success">Pemasukan</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger">Pengeluaran</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Keterangan</th>
+                                    <td>@Model.Keterangan</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Nominal</th>
+                                    <td class="fw-bold fs-5">Rp @Model.Nominal.ToString("N0")</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <form asp-action="Delete" method="post" class="mt-4 text-end">
+                        <input type="hidden" asp-for="Id" />
+                        
+                        <a asp-action="Index" class="btn btn-secondary px-4 me-2">
+                            <i class="fas fa-arrow-left me-1"></i> Batal
+                        </a>
+                        
+                        <button type="submit" class="btn btn-danger px-4 shadow-sm">
+                            <i class="fas fa-trash-alt me-1"></i> Ya, Hapus Permanen
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

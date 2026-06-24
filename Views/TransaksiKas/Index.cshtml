@@ -1,0 +1,70 @@
+@model List<SIKAMTA.Models.TransaksiKas>
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Transaksi Kas</h2>
+
+<hr />
+
+<a href="/TransaksiKas/Create"
+   class="btn btn-success mb-3">
+    Tambah Transaksi
+</a>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Tanggal</th>
+            <th>Kategori</th>
+            <th>Jenis</th>
+            <th>Keterangan</th>
+            <th>Nominal</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach(var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @item.Tanggal.ToString("dd/MM/yyyy")
+                </td>
+
+                <td>
+                    @item.Kategori?.NamaKategori
+                </td>
+
+                <td>
+                    @item.Jenis
+                </td>
+
+                <td>
+                    @item.Keterangan
+                </td>
+
+                <td>
+                    Rp @item.Nominal.ToString("N0")
+                </td>
+<td>
+    <a href="/TransaksiKas/Edit/@item.Id"
+       class="btn btn-warning btn-sm">
+        Edit
+    </a>
+
+    <a href="/TransaksiKas/Delete/@item.Id"
+       class="btn btn-danger btn-sm">
+        Hapus
+    </a>
+</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
